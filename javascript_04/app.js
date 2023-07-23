@@ -29,11 +29,43 @@
 
 // writeData("Hello", 5)
 
-function factorial(num) {
-    if (num > 1) {
-        return num * factorial(num - 1);
+// function factorial(num) {
+//     if (num > 1) {
+//         return num * factorial(num - 1);
+//     }
+//     return 1
+// }
+
+// console.log(factorial(5));
+
+
+// Closures
+
+// Global Scope => whole file
+// Local Scope => inside function
+
+// varibale written in Global Scope is accessable to child scope.
+// But Variables written in Child Scope is not accessable in global scope.
+
+// let abc = 7; // Global Scope
+// function print(def) {
+//     //let def = 14; // Local Scope
+//     return function (ghi) {
+//         console.log(def + ghi);
+//     }
+// }
+
+// let innerFunction = print(7);
+// innerFunction(7);
+
+function saveURL(url) {
+    return function () {
+        fetch(url)
+            .then(response => response.json())
+            .then(json => console.log(json))
     }
-    return 1
 }
 
-console.log(factorial(5));
+const makeRequest = saveURL('https://jsonplaceholder.typicode.com/todos');
+
+makeRequest();
